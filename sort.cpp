@@ -1,45 +1,50 @@
 #include "sort.h"
-std::vector<int> qsort(std::vector<int> list){
-  int i,j;
-
+#include<iostream>
+std::vector<int> qsort2(std::vector<int> &vec, int low, int high){
+  std::cout << "params: " << low << " | " << high << "\n";
   // base case
-  if (list.size() <= 1){
-    return list;
+  // changed to < to sort subarray of 2
+  if (high - low < 1){
+    return vec;
   }
 
   // select pivot value
   // for now we'll just pick list[0]
-  int pivot = list[0];
+  int pivot = vec[low];
+  std::cout << "pivot: " << pivot << "\n";
+  int pivotIndex = low;
 
-  // make 2 new vectors
-  std::vector<int> lower,higher;
   
   // copy all the values < pivot to lower
   // copy all the values >= pivot to higher;
-  for (i=1;i<list.size();i++){
-    if (list[i] < pivot){
-      lower.push_back(list[i]);
+  // should check last index
+  for (int i=low+1;i<=high;i++){
+    if (vec[i] < pivot){
+      vec.insert(vec.begin()+pivotIndex, vec[i]);
+      vec.erase(vec.begin()+i+1);
+      pivotIndex++;
     } else {
-      higher.push_back(list[i]);
+      // index of pivot doesn't change
+      //vec.insert(vec.begin()+pivotIndex+1, vec[i]);
     }
   }
+  /*
+  std::cout << "current run: \n";
+  for (int i = 0; i < vec.size(); i++) {
+    std::cout << vec[i] << " , ";
+  }
+  std::cout << "\n";
+  */
 
   // make our recursive calls
-  lower = qsort(lower);
-  higher = qsort(higher);
-
-  // copy everything back
-  for (i=0; i < lower.size(); i++){
-    list[i] = lower[i];
-  }
-  list[i] = pivot;
-  i++;
-  for (j=0;j<higher.size(); j++){
-    list[i] = higher[j];
-    i++;
-  }
+  // lower
+  //std::cout << "lower: " << low << "|" << pivotIndex-1 << "\n";
+  qsort2(vec, low, pivotIndex-1);
+  //higher
+  //std::cout << "higher: " << pivotIndex+1 << " | " << high << "\n ";
+  qsort2(vec, pivotIndex+1, high);
 
   // return the sorted list
-  return list;
+  return vec;
 }
 

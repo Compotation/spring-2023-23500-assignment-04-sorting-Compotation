@@ -1,2 +1,2 @@
 #include<vector>
-std::vector<int> qsort(std::vector<int> list);
+std::vector<int> qsort2(std::vector<int> &vec, int low, int high);
