@@ -10,9 +10,10 @@ std::vector<int> qsort2(std::vector<int> &vec, int low, int high){
 
   // select pivot value
   // for now we'll just pick list[0]
-  int pivot = vec[low];
+  int pivotIndex = medianIndex(vec, low, (int)((low + high)/2), high);
+  // TODO something wrong with sorting
+  int pivot = vec[pivotIndex];
   std::cout << "pivot: " << pivot << "\n";
-  int pivotIndex = low;
 
   
   // copy all the values < pivot to lower
@@ -28,13 +29,11 @@ std::vector<int> qsort2(std::vector<int> &vec, int low, int high){
       //vec.insert(vec.begin()+pivotIndex+1, vec[i]);
     }
   }
-  /*
   std::cout << "current run: \n";
   for (int i = 0; i < vec.size(); i++) {
     std::cout << vec[i] << " , ";
   }
   std::cout << "\n";
-  */
 
   // make our recursive calls
   // lower
@@ -48,3 +47,12 @@ std::vector<int> qsort2(std::vector<int> &vec, int low, int high){
   return vec;
 }
 
+int medianIndex(std::vector<int> &vec, int firstIndex, int middleIndex, int lastIndex) {
+  if ((vec[middleIndex] <= vec[firstIndex] && vec[firstIndex] <= vec[lastIndex]) || (vec[lastIndex] <= vec[firstIndex] && vec[firstIndex] <= vec[middleIndex])) {
+    return firstIndex;
+  } else if ((vec[firstIndex] <= vec[middleIndex] && vec[middleIndex] <= vec[lastIndex]) || (vec[lastIndex] <= vec[middleIndex] && vec[middleIndex] <= vec[firstIndex])) {
+    return middleIndex;
+  } else {
+    return lastIndex;
+  }
+}
