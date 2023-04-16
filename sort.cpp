@@ -39,6 +39,7 @@ std::vector<int> qsort2(std::vector<int> &vec, int low, int high) {
         vec.erase(vec.begin() + i);
         vec.insert(vec.begin() + pivotIndex, value);
         pivotIndex--;
+        i--;
       }
     }
   } else {
