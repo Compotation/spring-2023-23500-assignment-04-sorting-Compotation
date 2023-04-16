@@ -1,12 +1,12 @@
 #include "sort.h"
 #include<iostream>
 
-std::vector<int> qsort2(std::vector<int> &vec, int low, int high) {
+void qsort2(std::vector<int> &vec, int low, int high) {
 //  std::cout << "params: " << low << " | " << (int) ((low + high) / 2) << " | " << high << "\n";
   // base case
   // changed to < to sort subarray of 2
   if (high - low < 1) {
-    return vec;
+    return;
   }
 
   // select pivot value
@@ -75,9 +75,6 @@ std::vector<int> qsort2(std::vector<int> &vec, int low, int high) {
   //higher
   //std::cout << "higher: " << pivotIndex+1 << " | " << high << "\n ";
   qsort2(vec, pivotIndex + 1, high);
-
-  // return the sorted list
-  return vec;
 }
 
 int medianIndex(std::vector<int> &vec, int firstIndex, int middleIndex, int lastIndex) {
