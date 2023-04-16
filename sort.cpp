@@ -13,7 +13,7 @@ std::vector<int> qsort2(std::vector<int> &vec, int low, int high) {
   // for now we'll just pick list[0]
   int pivotIndex = medianIndex(vec, low, (int) ((low + high) / 2), high);
   int pivot = vec[pivotIndex];
-  std::cout << "pivot: " << pivot << " | pivot index:  " << pivotIndex << "\n";
+  std::cout << "pivot index: " << pivotIndex << " pivot: " << pivot << "\n";
 
 
   // copy all the values < pivot to lower
@@ -55,7 +55,9 @@ std::vector<int> qsort2(std::vector<int> &vec, int low, int high) {
         int value = vec[i];
         vec.erase(vec.begin() + i);
         vec.insert(vec.begin() + pivotIndex, value);
-        pivotIndex++;
+        pivotIndex--;
+        // so it looks at the item after removed item (index after i)
+        i--;
       }
     }
   }
