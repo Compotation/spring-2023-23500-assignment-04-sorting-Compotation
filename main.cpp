@@ -24,8 +24,8 @@ int main() {
 */
 qsort2(vec, 0, vec.size()-1);
 //std::cout << vec.size() << "\n";
-for (int i = 0; i < vec.size(); i++) {
-  std::cout << vec[i] << ", ";
+for (int i : vec) {
+  std::cout << i << ", ";
 }
 std::cout << "\norderd: " << is_vector_ordered(vec) << "\n";
   return 0;
