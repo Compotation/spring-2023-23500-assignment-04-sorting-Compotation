@@ -39,4 +39,4 @@ can create a new Makefile or copy and modify one you've used in the past.
 
 
 * Write your comments here:   
-   
+   Qsort2 was always faster than the other sorts. The C++ sort was slightly slower than qsort2. Merge sort was the slowest.
